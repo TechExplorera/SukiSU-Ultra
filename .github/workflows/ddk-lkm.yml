@@ -1,41 +1,23 @@
-name: Build KernelSU Kernel Module
-
 on:
+  workflow_dispatch:
+    inputs:
+      kmi:
+        description: 'KMI version'
+        required: true
+        type: choice
+        options:
+          - android12-5.10
+          - android13-5.15
+          - android14-6.1
+          - android15-6.6
+          - android16-6.12
+          - android17-6.18
+
   workflow_call:
     inputs:
       kmi:
         description: 'KMI version'
         required: true
-        type: string
-      ddk_release:
-        description: 'DDK release version'
-        required: false
-        default: '20260828'
-        type: string
-      package_name:
-        description: 'package name of manager'
-        required: false
-        default: ''
-        type: string
-      expected_size:
-        description: 'expected signature size'
-        required: false
-        default: ''
-        type: string
-      expected_hash:
-        description: 'expected signature hash'
-        required: false
-        default: ''
-        type: string
-      release_build:
-        description: 'Mark version metadata as a release build'
-        required: false
-        default: false
-        type: boolean
-      version_code:
-        description: 'Consistent KernelSU version code for all module builds'
-        required: false
-        default: ''
         type: string
 
 jobs:
